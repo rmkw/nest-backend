@@ -45,18 +45,13 @@ export class AuthService {
     }
   }
 
-  async register( registerDto: RegisterUserDto): Promise<loginResponse> {
-
-    const user = await this.create( registerDto );
-    
+  async register(registerDto: RegisterUserDto): Promise<loginResponse> {
+    const user = await this.create(registerDto);
 
     return {
       user: user,
-      token: this.getJWT({ id: user._id })
-
-    }
-      
-    
+      token: this.getJWT({ id: user._id }),
+    };
   }
 
   async login(loginDto: LoginDto): Promise<loginResponse> {
@@ -71,19 +66,32 @@ export class AuthService {
     }
 
     const { password: _, ...rest } = user.toJSON();
+    
     return {
       user: rest,
-      token: this.getJWT({id: user.id }),
+      token: this.getJWT({ id: user.id }),
+      
     };
-
   }
 
-  findAll(): Promise<User[]>{
-    return this.userModel.find();
+  // findAll(): Promise<User[]>{
+  //   return this.userModel.find();
+  // }
+  async findAll(page: number = 1, limit: number = 10) {
+    const skip = (page - 1) * limit;
+    const total = await this.userModel.countDocuments();
+    const users = await this.userModel.find().skip(skip).limit(limit).exec();
+    return {
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit),
+      users,
+    };
   }
 
-  async findUserById( id: string ){
-    const user = await this.userModel.findById( id );
+  async findUserById(id: string) {
+    const user = await this.userModel.findById(id);
     const { password, ...rest } = user.toJSON();
     return rest;
   }
@@ -100,9 +108,8 @@ export class AuthService {
     return `This action removes a #${id} auth`;
   }
 
-  getJWT( payload: JwtPayload){
-    const token = this.jwtService.sign( payload );
+  getJWT(payload: JwtPayload) {
+    const token = this.jwtService.sign(payload);
     return token;
-
   }
 }
