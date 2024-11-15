@@ -14,4 +14,4 @@ export class Persona {
   des_area?: string;
 }
 
-export const UserSchema = SchemaFactory.createForClass(Persona);
+export const PersonaSchema = SchemaFactory.createForClass(Persona);

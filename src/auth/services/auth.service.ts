@@ -4,15 +4,15 @@ import { Model } from 'mongoose';
 
 import * as bcryptjs from 'bcryptjs';
 
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
-import { User } from './entities/user.entity';
-import { LoginDto } from './dto/login.dto';
+import { CreateUserDto } from '../dto/create-user.dto';
+import { UpdateAuthDto } from '../dto/update-auth.dto';
+import { User } from '../entities/user.entity';
+import { LoginDto } from '../dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
 
-import { JwtPayload } from './interfaces/jwt-payload';
-import { loginResponse } from './interfaces/login-response';
-import { RegisterUserDto } from './dto';
+import { JwtPayload } from '../interfaces/jwt-payload';
+import { loginResponse } from '../interfaces/login-response';
+import { RegisterUserDto } from '../dto';
 
 
 

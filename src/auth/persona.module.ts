@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Persona, UserSchema } from './entities/persona.entity';
-import { PersonaService } from './persona.service';
-import { PersonaController } from './persona.controller';
+import { Persona, PersonaSchema } from './entities/persona.entity';
+import { PersonaService } from './services/persona.service';
+import { PersonaController } from './controllers/persona.controller';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: Persona.name, schema: UserSchema }]),
+    MongooseModule.forFeature([{ name: Persona.name, schema: PersonaSchema }]),
   ],
   controllers: [PersonaController],
   providers: [PersonaService],

@@ -1,11 +1,11 @@
-import { loginResponse } from './interfaces/login-response';
+import { loginResponse } from '../interfaces/login-response';
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request, Query } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
-import { LoginDto, RegisterUserDto } from './dto';
-import { AuthGuard } from './guards/auth.guard';
-import { User } from './entities/user.entity';
+import { AuthService } from '../services/auth.service';
+import { CreateUserDto } from '../dto/create-user.dto';
+import { UpdateAuthDto } from '../dto/update-auth.dto';
+import { LoginDto, RegisterUserDto } from '../dto';
+import { AuthGuard } from '../guards/auth.guard';
+import { User } from '../entities/user.entity';
 
 @Controller('auth')
 export class AuthController {
